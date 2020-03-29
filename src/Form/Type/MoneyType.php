@@ -9,28 +9,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Form type for the Money object.
- */
 class MoneyType extends AbstractType
 {
-    /** @var int */
-    protected $decimals;
+    private $decimals;
 
-    /**
-     * MoneyType constructor.
-     *
-     * @param int $decimals
-     */
-    public function __construct($decimals)
+    public function __construct(int $decimals)
     {
-        $this->decimals = (int) $decimals;
+        $this->decimals = $decimals;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('coverd_amount', 'Symfony\Component\Form\Extension\Core\Type\TextType', $options['amount_options'])
@@ -40,7 +31,10 @@ class MoneyType extends AbstractType
             );
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefaults([

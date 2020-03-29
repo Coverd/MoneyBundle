@@ -14,18 +14,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class CurrencyType extends AbstractType
 {
-    /** @var array of string (currency code like "USD", "EUR") */
-    protected $currencyCodeList;
-    /** @var string (currency code like "USD", "EUR") */
-    protected $referenceCurrencyCode;
+    private $currencyCodeList;
+    private $referenceCurrencyCode;
 
-    /**
-     * CurrencyType constructor.
-     *
-     * @param array  $currencyCodeList
-     * @param string $referenceCurrencyCode
-     */
-    public function __construct($currencyCodeList, $referenceCurrencyCode)
+    public function __construct(array $currencyCodeList, string $referenceCurrencyCode)
     {
         $this->currencyCodeList = $currencyCodeList;
         $this->referenceCurrencyCode = $referenceCurrencyCode;
@@ -34,7 +26,7 @@ class CurrencyType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $choiceList = [];
         foreach ($options['currency_choices'] as $currencyCode) {
@@ -50,7 +42,7 @@ class CurrencyType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setRequired(['reference_currency', 'currency_choices']);
         $resolver->setDefaults([
@@ -67,7 +59,7 @@ class CurrencyType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'coverd_currency';
     }

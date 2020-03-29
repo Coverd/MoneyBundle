@@ -1,5 +1,11 @@
 parameters:
-    level: 1
+    level: max
     inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
     paths:
       - src
+    ignoreErrors:
+      -
+        message: "#^Cannot call method end\\(\\) on Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeParentInterface\\|null\\.$#"
+        count: 1
+        path: src/DependencyInjection/Configuration.php

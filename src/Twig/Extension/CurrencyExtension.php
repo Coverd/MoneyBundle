@@ -1,10 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * Created by Philippe Le Van.
- * Date: 03/07/13.
- */
 
 namespace Coverd\MoneyBundle\Twig\Extension;
 
@@ -18,14 +14,8 @@ use Twig\TwigFilter;
  */
 class CurrencyExtension extends AbstractExtension
 {
-    /**
-     * @var MoneyFormatter
-     */
-    protected $moneyFormatter;
+    private $moneyFormatter;
 
-    /**
-     * Constructor.
-     */
     public function __construct(MoneyFormatter $moneyFormatter)
     {
         $this->moneyFormatter = $moneyFormatter;
@@ -40,13 +30,5 @@ class CurrencyExtension extends AbstractExtension
             new TwigFilter('currency_name', [$this->moneyFormatter, 'formatCurrencyAsName']),
             new TwigFilter('currency_symbol', [$this->moneyFormatter, 'formatCurrencyAsSymbol']),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'coverd_money_currency_extension';
     }
 }

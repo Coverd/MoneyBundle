@@ -8,31 +8,17 @@ use Coverd\MoneyBundle\Form\DataTransformer\SimpleMoneyToArrayTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Form type for the Money object.
- */
 class SimpleMoneyType extends MoneyType
 {
-    /** @var int */
-    protected $decimals;
+    private $decimals;
+    private $currencyCodeList;
+    private $referenceCurrencyCode;
 
-    /** @var array of string (currency code like "USD", "EUR") */
-    protected $currencyCodeList;
+    public function __construct(int $decimals, array $currencyCodeList, string $referenceCurrencyCode)
+    {
+        parent::__construct($decimals);
 
-    /** @var string (currency code like "USD", "EUR") */
-    protected $referenceCurrencyCode;
-
-    /**
-     * @param int    $decimals
-     * @param array  $currencyCodeList
-     * @param string $referenceCurrencyCode
-     */
-    public function __construct(
-        $decimals,
-        $currencyCodeList,
-        $referenceCurrencyCode
-    ) {
-        $this->decimals = (int) $decimals;
+        $this->decimals = $decimals;
         $this->currencyCodeList = $currencyCodeList;
         $this->referenceCurrencyCode = $referenceCurrencyCode;
     }
@@ -40,7 +26,7 @@ class SimpleMoneyType extends MoneyType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('coverd_amount', 'Symfony\Component\Form\Extension\Core\Type\TextType', $options['amount_options'])
@@ -62,7 +48,10 @@ class SimpleMoneyType extends MoneyType
         return 'coverd_simple_money';
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'currency' => $this->referenceCurrencyCode,

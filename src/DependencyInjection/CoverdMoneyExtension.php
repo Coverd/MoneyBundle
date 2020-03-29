@@ -19,7 +19,7 @@ class CoverdMoneyExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -28,14 +28,6 @@ class CoverdMoneyExtension extends Extension
         $loader->load('services.xml');
         $loader->load('form_types.xml');
 
-        if (\in_array('twig', $config['templating']['engines'])) {
-            $loader->load('twig_extension.xml');
-        }
-
-        if (\in_array('php', $config['templating']['engines'])) {
-            $loader->load('templating_helper.xml');
-        }
-
         $this->remapParameters($config, $container, [
             'currencies' => 'coverd_money.currencies',
             'reference_currency' => 'coverd_money.reference_currency',
@@ -43,10 +35,7 @@ class CoverdMoneyExtension extends Extension
         ]);
     }
 
-    /**
-     * @return void
-     */
-    protected function remapParameters(array $config, ContainerBuilder $container, array $map)
+    protected function remapParameters(array $config, ContainerBuilder $container, array $map): void
     {
         foreach ($map as $name => $paramName) {
             if (isset($config[$name])) {

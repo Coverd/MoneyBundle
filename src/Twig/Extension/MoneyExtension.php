@@ -41,12 +41,4 @@ class MoneyExtension extends AbstractExtension
             new TwigFilter('money_get_currency', [$this->moneyFormatter, 'getCurrency']),
         ];
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'coverd_money_extension';
-    }
 }

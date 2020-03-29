@@ -14,20 +14,12 @@ use Symfony\Component\Form\Extension\Core\DataTransformer\MoneyToLocalizedString
  */
 class MoneyToArrayTransformer implements DataTransformerInterface
 {
-    /** @var MoneyToLocalizedStringTransformer */
-    protected $sfTransformer;
+    private $sfTransformer;
+    private $decimals;
 
-    /** @var int */
-    protected $decimals;
-
-    /**
-     * MoneyToArrayTransformer constructor.
-     *
-     * @param int $decimals
-     */
-    public function __construct($decimals = 2)
+    public function __construct(int $decimals = 2)
     {
-        $this->decimals = (int) $decimals;
+        $this->decimals = $decimals;
         $this->sfTransformer = new MoneyToLocalizedStringTransformer($decimals, null, null, pow(10, $this->decimals));
     }
 
@@ -44,7 +36,7 @@ class MoneyToArrayTransformer implements DataTransformerInterface
             throw new UnexpectedTypeException($value, 'Money');
         }
 
-        $amount = $this->sfTransformer->transform($value->getAmount());
+        $amount = $this->sfTransformer->transform((int) $value->getAmount());
 
         return [
             'coverd_amount' => $amount,

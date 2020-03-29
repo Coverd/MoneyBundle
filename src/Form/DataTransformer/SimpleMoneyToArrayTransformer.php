@@ -11,14 +11,10 @@ use Money\Currency;
  */
 class SimpleMoneyToArrayTransformer extends MoneyToArrayTransformer
 {
-    protected $currency;
+    /** @var string */
+    private $currency;
 
-    /**
-     * SimpleMoneyToArrayTransformer constructor.
-     *
-     * @param int $decimals
-     */
-    public function __construct($decimals)
+    public function __construct(int $decimals)
     {
         parent::__construct($decimals);
     }
@@ -49,10 +45,7 @@ class SimpleMoneyToArrayTransformer extends MoneyToArrayTransformer
         return parent::reverseTransform($value);
     }
 
-    /**
-     * @param string $currency
-     */
-    public function setCurrency($currency)
+    public function setCurrency(string $currency): void
     {
         $this->currency = $currency;
     }
