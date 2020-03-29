@@ -45,7 +45,7 @@ class MoneyFormatter
      */
     public function formatMoney(Money $money, string $decPoint = ',', string $thousandsSep = ' '): string
     {
-        $symbol = $this->formatCurrency($money);
+        $symbol = $this->formatCurrencyAsSymbol($money->getCurrency());
         $amount = $this->formatAmount($money, $decPoint, $thousandsSep);
         $price = $amount.' '.$symbol;
 
@@ -77,27 +77,11 @@ class MoneyFormatter
     }
 
     /**
-     * Formats only the currency part of the given Money object.
-     */
-    public function formatCurrency(Money $money): string
-    {
-        return $this->formatCurrencyAsSymbol($money->getCurrency());
-    }
-
-    /**
      * Returns the symbol corresponding to the given currency.
      */
     public function formatCurrencyAsSymbol(Currency $currency): string
     {
         return Currencies::getSymbol($currency->getCode());
-    }
-
-    /**
-     * Returns the name as string of the given currency.
-     */
-    public function formatCurrencyAsName(Currency $currency): string
-    {
-        return $currency->getCode();
     }
 
     /**

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Coverd\MoneyBundle\Tests\Config;
 
 use Coverd\MoneyBundle\Money\MoneyManager;
-use Coverd\MoneyBundle\Twig\Extension\CurrencyExtension;
+use Coverd\MoneyBundle\Twig\Extension\MoneyExtension;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\StringInput;
@@ -56,6 +56,6 @@ class ConfigTest extends WebTestCase
     public function testCurrencyTwigExtension()
     {
         \Locale::setDefault('en');
-        $this->assertInstanceOf(CurrencyExtension::class, $this->client->getContainer()->get('coverd_money.twig.currency'));
+        $this->assertInstanceOf(MoneyExtension::class, $this->client->getContainer()->get('coverd_money.twig.money'));
     }
 }
