@@ -1,7 +1,7 @@
 # CoverdMoneyBundle
 
 [![Latest Version](https://img.shields.io/packagist/v/coverd/money-bundle.svg)](https://github.com/Coverd/MoneyBundle/releases/latest)
-[![Build Status](https://img.shields.io/travis/Coverd/MoneyBundle/master.svg?style=flat-square)](https://travis-ci.org/Coverd/MoneyBundle)
+[![Build Status](https://travis-ci.com/Coverd/MoneyBundle.svg?branch=master)](https://travis-ci.com/Coverd/MoneyBundle)
 
 ## Disclaimer
 
