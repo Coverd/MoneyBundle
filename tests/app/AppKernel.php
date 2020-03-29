@@ -1,17 +1,20 @@
 <?php
 
-use Symfony\Component\HttpKernel\Kernel;
+declare(strict_types=1);
+
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
 class AppKernel extends Kernel
 {
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Coverd\MoneyBundle\CoverdMoneyBundle(),
-        );
+        ];
+
         return $bundles;
     }
 

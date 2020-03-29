@@ -22,28 +22,20 @@ class MoneyType extends Type
 {
     const NAME = 'money';
 
-    /**
-     * @return string
-     */
-    public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         return $platform->getVarcharTypeDeclarationSQL($fieldDeclaration);
     }
 
-    /**
-     * @return bool
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }
 
     /**
      * @param mixed $value
-     *
-     * @return Money|null
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?Money
     {
         if (null === $value) {
             return null;
@@ -57,11 +49,9 @@ class MoneyType extends Type
     /**
      * @param mixed $value
      *
-     * @return string|null
-     *
      * @throws ConversionException
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if (empty($value)) {
             return null;
@@ -74,10 +64,7 @@ class MoneyType extends Type
         throw ConversionException::conversionFailed($value, self::NAME);
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return self::NAME;
     }

@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Coverd\MoneyBundle\Tests\Twig\Extension;
 
-use Money\Currency;
 use Coverd\MoneyBundle\Formatter\MoneyFormatter;
 use Coverd\MoneyBundle\Twig\Extension\CurrencyExtension;
-use Twig\Loader\ArrayLoader;
+use Money\Currency;
 use PHPUnit\Framework\TestCase;
 use Twig\Environment;
+use Twig\Loader\ArrayLoader;
 
 /**
  * @author Benjamin Dulau <benjamin@thebigbrainscompany.com>
@@ -26,9 +28,9 @@ class CurrencyExtensionTest extends TestCase
 
     public function setUp(): void
     {
-        \Locale::setDefault("fr_FR");
+        \Locale::setDefault('fr_FR');
         $this->extension = new CurrencyExtension(new MoneyFormatter(2));
-        $this->variables = array('currency' => new Currency('EUR'));
+        $this->variables = ['currency' => new Currency('EUR')];
     }
 
     /**
@@ -41,16 +43,16 @@ class CurrencyExtensionTest extends TestCase
 
     public function getCurrencyTests()
     {
-        return array(
-            array('{{ currency|currency_name }}', 'EUR'),
-            array('{{ currency|currency_symbol(".", ",") }}', '€'),
-        );
+        return [
+            ['{{ currency|currency_name }}', 'EUR'],
+            ['{{ currency|currency_symbol(".", ",") }}', '€'],
+        ];
     }
 
     protected function getTemplate($template)
     {
-        $loader = new ArrayLoader(array('index' => $template));
-        $twig = new Environment($loader, array('debug' => true, 'cache' => false));
+        $loader = new ArrayLoader(['index' => $template]);
+        $twig = new Environment($loader, ['debug' => true, 'cache' => false]);
         $twig->addExtension($this->extension);
 
         return $twig->load('index');
