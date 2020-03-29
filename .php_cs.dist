@@ -6,11 +6,15 @@ return PhpCsFixer\Config::create()
         '@Symfony:risky' => true,
         'array_syntax' => ['syntax' => 'short'],
         'declare_strict_types' => true,
+        'non_printable_character' => false,
+        'no_useless_else' => true,
+        'no_useless_return' => true,
+        'ordered_imports' => true,
     ])
     ->setRiskyAllowed(true)
     ->setFinder(
         PhpCsFixer\Finder::create()
-            ->in('src')
+            ->in(['src', 'tests'])
             ->files()
             ->name('*.php')
     )

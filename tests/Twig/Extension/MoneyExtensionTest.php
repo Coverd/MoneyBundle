@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Coverd\MoneyBundle\Tests\Twig\Extension;
 
-use Money\Currency;
-use Money\Money;
 use Coverd\MoneyBundle\Formatter\MoneyFormatter;
 use Coverd\MoneyBundle\Twig\Extension\MoneyExtension;
-use Twig\Loader\ArrayLoader;
+use Money\Currency;
+use Money\Money;
 use PHPUnit\Framework\TestCase;
 use Twig\Environment;
+use Twig\Loader\ArrayLoader;
 
 /**
  * @author Benjamin Dulau <benjamin@thebigbrainscompany.com>
@@ -27,10 +29,10 @@ class MoneyExtensionTest extends TestCase
 
     public function setUp(): void
     {
-        \Locale::setDefault("fr_FR");
+        \Locale::setDefault('fr_FR');
 
         $this->extension = new MoneyExtension(new MoneyFormatter(2));
-        $this->variables = array('price' => new Money(123456789, new Currency('EUR')));
+        $this->variables = ['price' => new Money(123456789, new Currency('EUR'))];
     }
 
     /**
@@ -43,22 +45,22 @@ class MoneyExtensionTest extends TestCase
 
     public function getMoneyTests()
     {
-        return array(
-            array('{{ price|money_localized_format }}', '1 234 567,89 €'),
-            array('{{ price|money_localized_format("en_US") }}', '€1,234,567.89'),
-            array('{{ price|money_format }}', '1 234 567,89 €'),
-            array('{{ price|money_format(".", ",") }}', '1,234,567.89 €'),
-            array('{{ price|money_format_amount }}', '1 234 567,89'),
-            array('{{ price|money_format_amount(".", ",") }}', '1,234,567.89'),
-            array('{{ price|money_format_currency }}', '€'),
-            array('{{ price|money_as_float }}', '1234567.89'),
-        );
+        return [
+            ['{{ price|money_localized_format }}', '1 234 567,89 €'],
+            ['{{ price|money_localized_format("en_US") }}', '€1,234,567.89'],
+            ['{{ price|money_format }}', '1 234 567,89 €'],
+            ['{{ price|money_format(".", ",") }}', '1,234,567.89 €'],
+            ['{{ price|money_format_amount }}', '1 234 567,89'],
+            ['{{ price|money_format_amount(".", ",") }}', '1,234,567.89'],
+            ['{{ price|money_format_currency }}', '€'],
+            ['{{ price|money_as_float }}', '1234567.89'],
+        ];
     }
 
     protected function getTemplate($template)
     {
-        $loader = new ArrayLoader(array('index' => $template));
-        $twig = new Environment($loader, array('debug' => true, 'cache' => false));
+        $loader = new ArrayLoader(['index' => $template]);
+        $twig = new Environment($loader, ['debug' => true, 'cache' => false]);
         $twig->addExtension($this->extension);
 
         return $twig->load('index');

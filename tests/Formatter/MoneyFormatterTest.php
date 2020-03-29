@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Coverd\MoneyBundle\Tests\Formatter;
 
+use Coverd\MoneyBundle\Formatter\MoneyFormatter;
 use Money\Currency;
 use Money\Money;
-use Coverd\MoneyBundle\Formatter\MoneyFormatter;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class MoneyFormatterTest
- * @package Coverd\MoneyBundle\Tests\Formatter
+ * Class MoneyFormatterTest.
+ *
  * @group formatter
  */
 class MoneyFormatterTest extends TestCase
@@ -55,7 +57,6 @@ class MoneyFormatterTest extends TestCase
         $numberFormatter->setTextAttribute(\NumberFormatter::CURRENCY_CODE, 'EUR');
         $numberFormatter->setAttribute(\NumberFormatter::FRACTION_DIGITS, 3);
         $this->assertEquals('12 345,679 €', $formatter->localizedFormatMoney($this->inputMoney, null, $numberFormatter));
-
     }
 
     public function testFormatMoneyWithDefaultSeparators()
@@ -63,6 +64,7 @@ class MoneyFormatterTest extends TestCase
         $value = $this->formatter->formatMoney($this->inputMoney);
         $this->assertEquals('1 234 567,89 €', $value);
     }
+
     public function testFormatMoneyWithDefaultSeparatorsAndDecimals3()
     {
         $this->formatter = new MoneyFormatter(4);
@@ -91,7 +93,7 @@ class MoneyFormatterTest extends TestCase
     public function testAsFloatIsReturningAFloat()
     {
         $value = $this->formatter->asFloat($this->inputMoney);
-        $this->assertTrue(is_float($value));
+        $this->assertTrue(\is_float($value));
     }
 
     public function testFormatCurrency()

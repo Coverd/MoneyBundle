@@ -1,9 +1,10 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Coverd\MoneyBundle\Tests\Money;
 
-use Money\Money;
 use Coverd\MoneyBundle\Money\MoneyManager;
-use Coverd\MoneyBundle\MoneyException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -11,12 +12,12 @@ use PHPUnit\Framework\TestCase;
  */
 class MoneyManagerTest extends TestCase
 {
-    /** @var  MoneyManager */
+    /** @var MoneyManager */
     protected $manager;
 
     public function setUp(): void
     {
-        $this->manager = new MoneyManager("EUR", 2);
+        $this->manager = new MoneyManager('EUR', 2);
     }
 
     public function tearDown(): void
@@ -26,11 +27,11 @@ class MoneyManagerTest extends TestCase
     public function testCreateMoneyFromFloat()
     {
         $money = $this->manager->createMoneyFromFloat(2.5);
-        $this->assertEquals("EUR", $money->getCurrency()->getCode());
+        $this->assertEquals('EUR', $money->getCurrency()->getCode());
         $this->assertEquals(250, $money->getAmount());
 
         $money = $this->manager->createMoneyFromFloat(2.5, 'USD');
-        $this->assertEquals("USD", $money->getCurrency()->getCode());
+        $this->assertEquals('USD', $money->getCurrency()->getCode());
         $this->assertEquals(250, $money->getAmount());
 
         $money = $this->manager->createMoneyFromFloat(2.49999999999999);
@@ -39,5 +40,4 @@ class MoneyManagerTest extends TestCase
         $money = $this->manager->createMoneyFromFloat(2.529999999999);
         $this->assertEquals(253, $money->getAmount());
     }
-
 }
