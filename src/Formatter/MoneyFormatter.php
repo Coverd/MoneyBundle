@@ -15,17 +15,9 @@ use Symfony\Component\Intl\Currencies;
  */
 class MoneyFormatter
 {
-    /**
-     * @var int
-     */
-    protected $decimals;
+    private $decimals;
 
-    /**
-     * MoneyFormatter constructor.
-     *
-     * @param int $decimals
-     */
-    public function __construct($decimals = 2)
+    public function __construct(int $decimals = 2)
     {
         $this->decimals = $decimals;
     }
@@ -37,12 +29,8 @@ class MoneyFormatter
      * the output as you wish.
      *
      * @see http://www.php.net/manual/en/numberformatter.formatcurrency.php
-     *
-     * @param string|null $locale
-     *
-     * @return string
      */
-    public function localizedFormatMoney(Money $money, $locale = null, \NumberFormatter $numberFormatter = null)
+    public function localizedFormatMoney(Money $money, ?string $locale = null, \NumberFormatter $numberFormatter = null): string
     {
         if (!($numberFormatter instanceof \NumberFormatter)) {
             $numberFormatter = $this->getDefaultNumberFormatter($money->getCurrency()->getCode(), $locale);
@@ -54,13 +42,8 @@ class MoneyFormatter
     /**
      * Formats the given Money object
      * INCLUDING the currency symbol.
-     *
-     * @param string $decPoint
-     * @param string $thousandsSep
-     *
-     * @return string
      */
-    public function formatMoney(Money $money, $decPoint = ',', $thousandsSep = ' ')
+    public function formatMoney(Money $money, string $decPoint = ',', string $thousandsSep = ' '): string
     {
         $symbol = $this->formatCurrency($money);
         $amount = $this->formatAmount($money, $decPoint, $thousandsSep);
@@ -72,13 +55,8 @@ class MoneyFormatter
     /**
      * Formats the amount part of the given Money object
      * WITHOUT INCLUDING the currency symbol.
-     *
-     * @param string $decPoint
-     * @param string $thousandsSep
-     *
-     * @return string
      */
-    public function formatAmount(Money $money, $decPoint = ',', $thousandsSep = ' ')
+    public function formatAmount(Money $money, string $decPoint = ',', string $thousandsSep = ' '): string
     {
         $amount = $this->asFloat($money);
         $amount = number_format($amount, $this->decimals, $decPoint, $thousandsSep);
@@ -88,10 +66,8 @@ class MoneyFormatter
 
     /**
      * Returns the amount for the given Money object as simple float.
-     *
-     * @return float
      */
-    public function asFloat(Money $money)
+    public function asFloat(Money $money): float
     {
         $amount = $money->getAmount();
         $amount = (float) $amount;
@@ -102,42 +78,26 @@ class MoneyFormatter
 
     /**
      * Formats only the currency part of the given Money object.
-     *
-     * @return string
      */
-    public function formatCurrency(Money $money)
+    public function formatCurrency(Money $money): string
     {
         return $this->formatCurrencyAsSymbol($money->getCurrency());
     }
 
     /**
      * Returns the symbol corresponding to the given currency.
-     *
-     * @return string
      */
-    public function formatCurrencyAsSymbol(Currency $currency)
+    public function formatCurrencyAsSymbol(Currency $currency): string
     {
         return Currencies::getSymbol($currency->getCode());
     }
 
     /**
      * Returns the name as string of the given currency.
-     *
-     * @return string
      */
-    public function formatCurrencyAsName(Currency $currency)
+    public function formatCurrencyAsName(Currency $currency): string
     {
         return $currency->getCode();
-    }
-
-    /**
-     * Returns the Currency object.
-     *
-     * @return \Money\Currency
-     */
-    public function getCurrency(Money $money)
-    {
-        return $money->getCurrency();
     }
 
     /**

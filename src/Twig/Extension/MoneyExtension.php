@@ -38,7 +38,6 @@ class MoneyExtension extends AbstractExtension
             new TwigFilter('money_format_amount', [$this->moneyFormatter, 'formatAmount']),
             new TwigFilter('money_format_currency', [$this->moneyFormatter, 'formatCurrency']),
             new TwigFilter('money_as_float', [$this->moneyFormatter, 'asFloat']),
-            new TwigFilter('money_get_currency', [$this->moneyFormatter, 'getCurrency']),
         ];
     }
 }
