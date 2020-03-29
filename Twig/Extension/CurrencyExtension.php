@@ -4,9 +4,9 @@
  * Date: 03/07/13
  */
 
-namespace Tbbc\MoneyBundle\Twig\Extension;
+namespace Coverd\MoneyBundle\Twig\Extension;
 
-use Tbbc\MoneyBundle\Formatter\MoneyFormatter;
+use Coverd\MoneyBundle\Formatter\MoneyFormatter;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -47,6 +47,6 @@ class CurrencyExtension extends AbstractExtension
      */
     public function getName()
     {
-        return 'tbbc_money_currency_extension';
+        return 'coverd_money_currency_extension';
     }
 }

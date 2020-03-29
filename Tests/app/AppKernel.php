@@ -10,7 +10,7 @@ class AppKernel extends Kernel
         $bundles = array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Tbbc\MoneyBundle\TbbcMoneyBundle(),
+            new Coverd\MoneyBundle\CoverdMoneyBundle(),
         );
         return $bundles;
     }

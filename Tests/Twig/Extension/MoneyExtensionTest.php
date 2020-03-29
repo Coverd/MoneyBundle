@@ -1,11 +1,11 @@
 <?php
 
-namespace Tbbc\MoneyBundle\Tests\Twig\Extension;
+namespace Coverd\MoneyBundle\Tests\Twig\Extension;
 
 use Money\Currency;
 use Money\Money;
-use Tbbc\MoneyBundle\Formatter\MoneyFormatter;
-use Tbbc\MoneyBundle\Twig\Extension\MoneyExtension;
+use Coverd\MoneyBundle\Formatter\MoneyFormatter;
+use Coverd\MoneyBundle\Twig\Extension\MoneyExtension;
 use Twig\Loader\ArrayLoader;
 use PHPUnit\Framework\TestCase;
 use Twig\Environment;
@@ -25,17 +25,11 @@ class MoneyExtensionTest extends TestCase
      */
     protected $variables;
 
-    public function setUp()
+    public function setUp(): void
     {
         \Locale::setDefault("fr_FR");
-        $pairManager = $this->getMockBuilder('Tbbc\MoneyBundle\Pair\PairManager')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $pairManager->expects($this->any())
-            ->method('getReferenceCurrencyCode')
-            ->will($this->returnValue("EUR"));
 
-        $this->extension = new MoneyExtension(new MoneyFormatter(2), $pairManager);
+        $this->extension = new MoneyExtension(new MoneyFormatter(2));
         $this->variables = array('price' => new Money(123456789, new Currency('EUR')));
     }
 
@@ -50,7 +44,7 @@ class MoneyExtensionTest extends TestCase
     public function getMoneyTests()
     {
         return array(
-            array('{{ price|money_localized_format }}', '1 234 567,89 €'),
+            array('{{ price|money_localized_format }}', '1 234 567,89 €'),
             array('{{ price|money_localized_format("en_US") }}', '€1,234,567.89'),
             array('{{ price|money_format }}', '1 234 567,89 €'),
             array('{{ price|money_format(".", ",") }}', '1,234,567.89 €'),
@@ -67,6 +61,6 @@ class MoneyExtensionTest extends TestCase
         $twig = new Environment($loader, array('debug' => true, 'cache' => false));
         $twig->addExtension($this->extension);
 
-        return $twig->loadTemplate('index');
+        return $twig->load('index');
     }
 }

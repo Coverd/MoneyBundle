@@ -1,9 +1,9 @@
 <?php
-namespace Tbbc\MoneyBundle\Tests\Money;
+namespace Coverd\MoneyBundle\Tests\Money;
 
 use Money\Money;
-use Tbbc\MoneyBundle\Money\MoneyManager;
-use Tbbc\MoneyBundle\MoneyException;
+use Coverd\MoneyBundle\Money\MoneyManager;
+use Coverd\MoneyBundle\MoneyException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,12 +14,12 @@ class MoneyManagerTest extends TestCase
     /** @var  MoneyManager */
     protected $manager;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->manager = new MoneyManager("EUR", 2);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

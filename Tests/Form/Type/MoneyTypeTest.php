@@ -4,14 +4,14 @@
  * Date: 01/07/13
  */
 
-namespace Tbbc\MoneyBundle\Tests\Form\Type;
+namespace Coverd\MoneyBundle\Tests\Form\Type;
 
 use Money\Currency;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\FormIntegrationTestCase;
 use Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException;
-use Tbbc\MoneyBundle\Form\Type\CurrencyType;
-use Tbbc\MoneyBundle\Form\Type\MoneyType;
+use Coverd\MoneyBundle\Form\Type\CurrencyType;
+use Coverd\MoneyBundle\Form\Type\MoneyType;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Money\Money;
 
@@ -19,8 +19,8 @@ class MoneyTypeTest
     extends TypeTestCase
 {
 
-    private $currencyTypeClass = 'Tbbc\MoneyBundle\Form\Type\CurrencyType';
-    private $moneyTypeClass = 'Tbbc\MoneyBundle\Form\Type\MoneyType';
+    private $currencyTypeClass = 'Coverd\MoneyBundle\Form\Type\CurrencyType';
+    private $moneyTypeClass = 'Coverd\MoneyBundle\Form\Type\MoneyType';
 
     public function testBindValid()
     {
@@ -28,8 +28,8 @@ class MoneyTypeTest
             "currency_type" => $this->currencyTypeClass,
         ));
         $form->submit(array(
-            "tbbc_currency" => array("tbbc_name"=>'EUR'),
-            "tbbc_amount" => '12'
+            "coverd_currency" => array("coverd_name"=>'EUR'),
+            "coverd_amount" => '12'
         ));
         $this->assertEquals(Money::EUR(1200), $form->getData());
     }
@@ -41,8 +41,8 @@ class MoneyTypeTest
             "currency_type" => $this->currencyTypeClass,
         ));
         $form->submit(array(
-            "tbbc_currency" => array("tbbc_name"=>'EUR'),
-            "tbbc_amount" => '12,5'
+            "coverd_currency" => array("coverd_name"=>'EUR'),
+            "coverd_amount" => '12,5'
         ));
         $this->assertEquals(Money::EUR(1250), $form->getData());
     }
@@ -54,8 +54,8 @@ class MoneyTypeTest
             "currency_type" => $this->currencyTypeClass,
         ));
         $form->submit(array(
-            "tbbc_currency" => array("tbbc_name"=>'EUR'),
-            "tbbc_amount" => '1 252,5'
+            "coverd_currency" => array("coverd_name"=>'EUR'),
+            "coverd_amount" => '1 252,5'
         ));
         $this->assertEquals(Money::EUR(125250), $form->getData());
     }
@@ -69,7 +69,7 @@ class MoneyTypeTest
         $form->setData(Money::EUR(120));
         $formView = $form->createView();
 
-        $this->assertEquals("1,20", $formView->children["tbbc_amount"]->vars["value"]);
+        $this->assertEquals("1,20", $formView->children["coverd_amount"]->vars["value"]);
     }
 
     public function testOptions()
@@ -87,13 +87,13 @@ class MoneyTypeTest
         $form->setData(Money::EUR(120));
         $formView = $form->createView();
 
-        $this->assertEquals("1,20", $formView->children["tbbc_amount"]->vars["value"]);
+        $this->assertEquals("1,20", $formView->children["coverd_amount"]->vars["value"]);
     }
 
     public function testOptionsFailsIfNotValid()
     {
         $this->expectException(UndefinedOptionsException::class);
-        $this->expectExceptionMessageRegExp('/this_does_not_exists/');
+        $this->expectExceptionMessageMatches('/this_does_not_exists/');
 
         $this->factory->create($this->moneyTypeClass, null, array(
             "currency_type" => $this->currencyTypeClass,

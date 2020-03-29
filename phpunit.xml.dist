@@ -3,7 +3,7 @@
 <phpunit bootstrap="./Tests/bootstrap.php" colors="true">
     <!-- Les fichiers de tests à lancer -->
     <testsuites>
-        <testsuite name="TbbcMoneyBundle test suite">
+        <testsuite name="CoverdMoneyBundle test suite">
             <directory suffix="Test.php">./Tests</directory>
         </testsuite>
     </testsuites>

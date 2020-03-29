@@ -1,14 +1,14 @@
 <?php
-namespace Tbbc\MoneyBundle\Templating\Helper;
+namespace Coverd\MoneyBundle\Templating\Helper;
 
 use Money\Money;
 use Symfony\Component\Templating\Helper\Helper;
-use Tbbc\MoneyBundle\Formatter\MoneyFormatter;
-use Tbbc\MoneyBundle\Pair\PairManagerInterface;
+use Coverd\MoneyBundle\Formatter\MoneyFormatter;
+use Coverd\MoneyBundle\Pair\PairManagerInterface;
 
 /**
  * Class MoneyHelper
- * @package Tbbc\MoneyBundle\Templating\Helper
+ * @package Coverd\MoneyBundle\Templating\Helper
  */
 class MoneyHelper extends Helper
 {
@@ -18,20 +18,13 @@ class MoneyHelper extends Helper
     protected $moneyFormatter;
 
     /**
-     * @var PairManagerInterface
-     */
-    protected $pairManager;
-
-    /**
      * Constructor
      *
      * @param MoneyFormatter       $moneyFormatter
-     * @param PairManagerInterface $pairManager
      */
-    public function __construct(MoneyFormatter $moneyFormatter, PairManagerInterface $pairManager)
+    public function __construct(MoneyFormatter $moneyFormatter)
     {
         $this->moneyFormatter = $moneyFormatter;
-        $this->pairManager = $pairManager;
     }
 
     /**
@@ -98,23 +91,10 @@ class MoneyHelper extends Helper
     }
 
     /**
-     * Converts the given Money object into another
-     * currency and returns a new Money object
-     *
-     * @param Money  $money
-     * @param string $currencyCode
-     * @return Money
-     */
-    public function convert(Money $money, $currencyCode)
-    {
-        return $this->pairManager->convert($money, $currencyCode);
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function getName()
     {
-        return 'tbbc_money_helper';
+        return 'coverd_money_helper';
     }
 }

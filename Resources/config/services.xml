@@ -5,66 +5,20 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="tbbc_money.pair_manager.class">Tbbc\MoneyBundle\Pair\PairManager</parameter>
-        <parameter key="tbbc_money.pair_manager_interface.class">Tbbc\MoneyBundle\Pair\PairManagerInterface</parameter>
-        <parameter key="tbbc_money.money_manager.class">Tbbc\MoneyBundle\Money\MoneyManager</parameter>
-        <parameter key="tbbc_money.pair_history_manager.class">Tbbc\MoneyBundle\PairHistory\PairHistoryManager</parameter>
-        <parameter key="tbbc_money.pair.csv_storage.class">Tbbc\MoneyBundle\Pair\Storage\CsvStorage</parameter>
-        <parameter key="tbbc_money.pair_manager.ratio_file_name">%kernel.root_dir%/data/tbbc_money/ratio_file_name.csv</parameter>
-        <parameter key="tbbc_money.ratio_provider.yahoo_finance.class">Tbbc\MoneyBundle\Pair\RatioProvider\YahooFinanceRatioProvider</parameter>
-        <parameter key="tbbc_money.ratio_provider.google.class">Tbbc\MoneyBundle\Pair\RatioProvider\GoogleRatioProvider</parameter>
-        <parameter key="tbbc_money.ratio_provider.ecb.class">Tbbc\MoneyBundle\Pair\RatioProvider\ECBRatioProvider</parameter>
-        <parameter key="tbbc_money.formatter.money_formatter.class">Tbbc\MoneyBundle\Formatter\MoneyFormatter</parameter>
-
-        <parameter key="tbbc_money.command.ratio_fetch.class">Tbbc\MoneyBundle\Command\RatioFetchCommand</parameter>
-        <parameter key="tbbc_money.command.ratio_list.class">Tbbc\MoneyBundle\Command\RatioListCommand</parameter>
-        <parameter key="tbbc_money.command.ratio_save.class">Tbbc\MoneyBundle\Command\RatioSaveCommand</parameter>
+        <parameter key="coverd_money.money_manager.class">Coverd\MoneyBundle\Money\MoneyManager</parameter>
+        <parameter key="coverd_money.formatter.money_formatter.class">Coverd\MoneyBundle\Formatter\MoneyFormatter</parameter>
     </parameters>
 
     <services>
-        <service id="tbbc_money.pair_manager" class="%tbbc_money.pair_manager.class%" public="true">
-            <argument type="service" id="tbbc_money.pair.csv_storage"/>
-            <argument>%tbbc_money.currencies%</argument>
-            <argument>%tbbc_money.reference_currency%</argument>
-            <argument type="service" id="event_dispatcher"/>
-        </service>
-        <service id="%tbbc_money.pair_manager_interface.class%" alias="tbbc_money.pair_manager" public="false">
-        </service>
-        <service id="tbbc_money.money_manager" class="%tbbc_money.money_manager.class%" public="true">
-            <argument>%tbbc_money.reference_currency%</argument>
-            <argument>%tbbc_money.decimals%</argument>
-        </service>
-        <!-- Storage -->
-        <service id="tbbc_money.pair.csv_storage" class="%tbbc_money.pair.csv_storage.class%" public="true">
-            <argument>%tbbc_money.pair_manager.ratio_file_name%</argument>
-            <argument>%tbbc_money.reference_currency%</argument>
-        </service>
-        <!-- Ratio providers -->
-        <service id="tbbc_money.ratio_provider.yahoo_finance" class="%tbbc_money.ratio_provider.yahoo_finance.class%" public="true">
-        </service>
-        <service id="tbbc_money.ratio_provider.google" class="%tbbc_money.ratio_provider.google.class%" public="true">
-        </service>
-        <service id="tbbc_money.ratio_provider.ecb" class="%tbbc_money.ratio_provider.ecb.class%">
+        <service id="coverd_money.money_manager" class="%coverd_money.money_manager.class%" public="true">
+            <argument>%coverd_money.reference_currency%</argument>
+            <argument>%coverd_money.decimals%</argument>
         </service>
         <!-- Formatter -->
-        <service id="tbbc_money.formatter.money_formatter" class="%tbbc_money.formatter.money_formatter.class%" public="true">
-            <argument>%tbbc_money.decimals%</argument>
+        <service id="coverd_money.formatter.money_formatter" class="%coverd_money.formatter.money_formatter.class%" public="true">
+            <argument>%coverd_money.decimals%</argument>
         </service>
-        <service id="%tbbc_money.formatter.money_formatter.class%" alias="tbbc_money.formatter.money_formatter" public="false">
-        </service>
-
-        <!-- Commands -->
-        <service id="tbbc_money.command.ratio_fetch" class="%tbbc_money.command.ratio_fetch.class%">
-            <argument type="service" id="tbbc_money.pair_manager" />
-            <tag name="console.command" command="tbbc:money:ratio-fetch" />
-        </service>
-        <service id="tbbc_money.command.ratio_list" class="%tbbc_money.command.ratio_list.class%">
-            <argument type="service" id="tbbc_money.pair_manager" />
-            <tag name="console.command" command="tbbc:money:ratio-list" />
-        </service>
-        <service id="tbbc_money.command.ratio_save" class="%tbbc_money.command.ratio_save.class%">
-            <argument type="service" id="tbbc_money.pair_manager" />
-            <tag name="console.command" command="tbbc:money:ratio-save" />
+        <service id="%coverd_money.formatter.money_formatter.class%" alias="coverd_money.formatter.money_formatter" public="false">
         </service>
     </services>
 

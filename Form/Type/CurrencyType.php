@@ -1,8 +1,8 @@
 <?php
 
-namespace Tbbc\MoneyBundle\Form\Type;
+namespace Coverd\MoneyBundle\Form\Type;
 
-use Tbbc\MoneyBundle\Form\DataTransformer\CurrencyToArrayTransformer;
+use Coverd\MoneyBundle\Form\DataTransformer\CurrencyToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -38,7 +38,7 @@ class CurrencyType extends AbstractType
         foreach ($options["currency_choices"] as $currencyCode) {
             $choiceList[$currencyCode] = $currencyCode;
         }
-        $builder->add('tbbc_name', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array_merge(array(
+        $builder->add('coverd_name', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array_merge(array(
             "choices" => $choiceList,
             "preferred_choices" => array($options["reference_currency"]),
         ), $options['currency_options']));
@@ -67,6 +67,6 @@ class CurrencyType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'tbbc_currency';
+        return 'coverd_currency';
     }
 }

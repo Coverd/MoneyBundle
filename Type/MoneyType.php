@@ -1,5 +1,5 @@
 <?php
-namespace Tbbc\MoneyBundle\Type;
+namespace Coverd\MoneyBundle\Type;
 
 use Money\Money;
 use Money\Currency;

@@ -1,9 +1,9 @@
 <?php
-namespace Tbbc\MoneyBundle;
+namespace Coverd\MoneyBundle;
 
 /**
  * Class MoneyException
- * @package Tbbc\MoneyBundle
+ * @package Coverd\MoneyBundle
  * @author Philippe Le Van.
  */
 class MoneyException extends \Exception

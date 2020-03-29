@@ -1,11 +1,11 @@
 <?php
 
-namespace Tbbc\MoneyBundle\Form\Type;
+namespace Coverd\MoneyBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tbbc\MoneyBundle\Form\DataTransformer\MoneyToArrayTransformer;
+use Coverd\MoneyBundle\Form\DataTransformer\MoneyToArrayTransformer;
 
 /**
  * Form type for the Money object.
@@ -31,8 +31,8 @@ class MoneyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('tbbc_amount', 'Symfony\Component\Form\Extension\Core\Type\TextType', $options['amount_options'])
-            ->add('tbbc_currency', $options['currency_type'], $options['currency_options'])
+            ->add('coverd_amount', 'Symfony\Component\Form\Extension\Core\Type\TextType', $options['amount_options'])
+            ->add('coverd_currency', $options['currency_type'], $options['currency_options'])
             ->addModelTransformer(
                 new MoneyToArrayTransformer($this->decimals)
             );
@@ -46,7 +46,7 @@ class MoneyType extends AbstractType
         $resolver
             ->setDefaults(array(
                 'data_class' => null,
-                'currency_type' => 'Tbbc\MoneyBundle\Form\Type\CurrencyType',
+                'currency_type' => 'Coverd\MoneyBundle\Form\Type\CurrencyType',
                 'amount_options' => array(),
                 'currency_options' => array(),
             ))
@@ -54,7 +54,7 @@ class MoneyType extends AbstractType
                 'currency_type',
                 array(
                     'string',
-                    'Tbbc\MoneyBundle\Form\Type\CurrencyType',
+                    'Coverd\MoneyBundle\Form\Type\CurrencyType',
                 )
             )
             ->setAllowedTypes(
@@ -73,6 +73,6 @@ class MoneyType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'tbbc_money';
+        return 'coverd_money';
     }
 }

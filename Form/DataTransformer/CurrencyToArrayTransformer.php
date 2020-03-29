@@ -1,6 +1,6 @@
 <?php
 
-namespace Tbbc\MoneyBundle\Form\DataTransformer;
+namespace Coverd\MoneyBundle\Form\DataTransformer;
 
 use Money\Currency;
 use Money\Exception\UnknownCurrencyException;
@@ -25,7 +25,7 @@ class CurrencyToArrayTransformer implements DataTransformerInterface
             throw new UnexpectedTypeException($value, 'Currency');
         }
 
-        return array("tbbc_name" => $value->getCode());
+        return array("coverd_name" => $value->getCode());
     }
 
     /**
@@ -39,11 +39,11 @@ class CurrencyToArrayTransformer implements DataTransformerInterface
         if (!is_array($value)) {
             throw new UnexpectedTypeException($value, 'array');
         }
-        if (!isset($value["tbbc_name"])) {
+        if (!isset($value["coverd_name"])) {
             return null;
         }
         try {
-            return new Currency($value["tbbc_name"]);
+            return new Currency($value["coverd_name"]);
         } catch (UnknownCurrencyException $e) {
             throw new TransformationFailedException($e->getMessage());
         }

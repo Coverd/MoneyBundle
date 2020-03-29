@@ -1,10 +1,10 @@
 <?php
 
-namespace Tbbc\MoneyBundle\Twig\Extension;
+namespace Coverd\MoneyBundle\Twig\Extension;
 
 use Money\Money;
-use Tbbc\MoneyBundle\Formatter\MoneyFormatter;
-use Tbbc\MoneyBundle\Pair\PairManagerInterface;
+use Coverd\MoneyBundle\Formatter\MoneyFormatter;
+use Coverd\MoneyBundle\Pair\PairManagerInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -20,20 +20,13 @@ class MoneyExtension extends AbstractExtension
     protected $moneyFormatter;
 
     /**
-     * @var PairManagerInterface
-     */
-    protected $pairManager;
-
-    /**
      * Constructor
      *
      * @param MoneyFormatter       $moneyFormatter
-     * @param PairManagerInterface $pairManager
      */
-    public function __construct(MoneyFormatter $moneyFormatter, PairManagerInterface $pairManager)
+    public function __construct(MoneyFormatter $moneyFormatter)
     {
         $this->moneyFormatter = $moneyFormatter;
-        $this->pairManager = $pairManager;
     }
 
     /**
@@ -48,21 +41,7 @@ class MoneyExtension extends AbstractExtension
             new TwigFilter('money_format_currency', array($this->moneyFormatter, 'formatCurrency')),
             new TwigFilter('money_as_float', array($this->moneyFormatter, 'asFloat')),
             new TwigFilter('money_get_currency', array($this->moneyFormatter, 'getCurrency')),
-            new TwigFilter('money_convert', array($this, 'convert')),
         );
-    }
-
-    /**
-     * Converts the given Money object into another
-     * currency and returns a new Money object
-     *
-     * @param Money  $money
-     * @param string $currencyCode
-     * @return Money
-     */
-    public function convert(Money $money, $currencyCode)
-    {
-        return $this->pairManager->convert($money, $currencyCode);
     }
 
     /**
@@ -70,6 +49,6 @@ class MoneyExtension extends AbstractExtension
      */
     public function getName()
     {
-        return 'tbbc_money_extension';
+        return 'coverd_money_extension';
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tbbc\MoneyBundle\DependencyInjection;
+namespace Coverd\MoneyBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,11 +18,11 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('tbbc_money');
+        $treeBuilder = new TreeBuilder('coverd_money');
         if (method_exists($treeBuilder, 'getRootNode')) {
             $rootNode = $treeBuilder->getRootNode();
         } else {
-            $rootNode = $treeBuilder->root('tbbc_money');
+            $rootNode = $treeBuilder->root('coverd_money');
         }
 
         $this->addCurrencySection($rootNode);
@@ -31,9 +31,9 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Parses the tbbc_money config section
+     * Parses the coverd_money config section
      * Example for yaml driver:
-     * tbbc_money:
+     * coverd_money:
      *     currencies: ["USD", "EUR"]
      *     reference_currency: "EUR"
      *
@@ -53,24 +53,9 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
-                ->booleanNode('enable_pair_history')
-                    ->defaultValue(false)
-                ->end()
                 ->integerNode('decimals')
                     ->defaultValue(2)
                     ->min(0)
-                ->end()
-                ->scalarNode('storage')
-                    ->cannotBeEmpty()
-                    ->defaultValue('csv')
-                    ->validate()
-                    ->ifNotInArray(array('csv', 'doctrine'))
-                        ->thenInvalid('Invalid storage "%s"')
-                    ->end()
-                ->end()
-                ->scalarNode('ratio_provider')
-                    ->cannotBeEmpty()
-                    ->defaultValue('tbbc_money.ratio_provider.ecb')
                 ->end()
                 ->arrayNode('templating')
                     ->addDefaultsIfNotSet()

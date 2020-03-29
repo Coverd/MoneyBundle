@@ -1,13 +1,13 @@
 <?php
-namespace Tbbc\MoneyBundle\Templating\Helper;
+namespace Coverd\MoneyBundle\Templating\Helper;
 
 use Money\Currency;
 use Symfony\Component\Templating\Helper\Helper;
-use Tbbc\MoneyBundle\Formatter\MoneyFormatter;
+use Coverd\MoneyBundle\Formatter\MoneyFormatter;
 
 /**
  * Class CurrencyHelper
- * @package Tbbc\MoneyBundle\Templating\Helper
+ * @package Coverd\MoneyBundle\Templating\Helper
  */
 class CurrencyHelper extends Helper
 {
@@ -53,6 +53,6 @@ class CurrencyHelper extends Helper
      */
     public function getName()
     {
-        return 'tbbc_money_currency_helper';
+        return 'coverd_money_currency_helper';
     }
 }

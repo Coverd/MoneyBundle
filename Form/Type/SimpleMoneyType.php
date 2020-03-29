@@ -1,12 +1,12 @@
 <?php
 
-namespace Tbbc\MoneyBundle\Form\Type;
+namespace Coverd\MoneyBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Tbbc\MoneyBundle\Form\DataTransformer\SimpleMoneyToArrayTransformer;
-use Tbbc\MoneyBundle\Pair\PairManagerInterface;
+use Coverd\MoneyBundle\Form\DataTransformer\SimpleMoneyToArrayTransformer;
+use Coverd\MoneyBundle\Pair\PairManagerInterface;
 
 /**
  * Form type for the Money object.
@@ -43,7 +43,7 @@ class SimpleMoneyType extends MoneyType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('tbbc_amount', 'Symfony\Component\Form\Extension\Core\Type\TextType', $options['amount_options'])
+            ->add('coverd_amount', 'Symfony\Component\Form\Extension\Core\Type\TextType', $options['amount_options'])
         ;
 
         $transformer = new SimpleMoneyToArrayTransformer($this->decimals);
@@ -59,7 +59,7 @@ class SimpleMoneyType extends MoneyType
      */
     public function getBlockPrefix()
     {
-        return 'tbbc_simple_money';
+        return 'coverd_simple_money';
     }
 
     /**
@@ -74,14 +74,5 @@ class SimpleMoneyType extends MoneyType
         $resolver->setAllowedTypes('currency', 'string');
         $resolver->setAllowedValues('currency', $this->currencyCodeList);
         $resolver->setAllowedTypes('amount_options', 'array');
-    }
-
-    /**
-     * BC for SF < 2.7
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 }

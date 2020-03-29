@@ -1,6 +1,6 @@
 <?php
 
-namespace Tbbc\MoneyBundle\Formatter;
+namespace Coverd\MoneyBundle\Formatter;
 
 use Money\Currency;
 use Money\Money;

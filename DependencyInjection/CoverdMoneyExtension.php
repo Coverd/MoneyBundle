@@ -1,6 +1,6 @@
 <?php
 
-namespace Tbbc\MoneyBundle\DependencyInjection;
+namespace Coverd\MoneyBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class TbbcMoneyExtension extends Extension
+class CoverdMoneyExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -35,14 +35,10 @@ class TbbcMoneyExtension extends Extension
         }
 
         $this->remapParameters($config, $container, array(
-            'currencies'  => 'tbbc_money.currencies',
-            'reference_currency'  => 'tbbc_money.reference_currency',
-            'decimals'  => 'tbbc_money.decimals',
-            'enable_pair_history'  => 'tbbc_money.enable_pair_history',
-            'ratio_provider'  => 'tbbc_money.ratio_provider',
+            'currencies'  => 'coverd_money.currencies',
+            'reference_currency'  => 'coverd_money.reference_currency',
+            'decimals'  => 'coverd_money.decimals',
         ));
-
-        $container->setParameter('tbbc_money.pair.storage', $config['storage']);
     }
 
     /**

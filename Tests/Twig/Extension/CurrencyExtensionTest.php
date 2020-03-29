@@ -1,10 +1,10 @@
 <?php
 
-namespace Tbbc\MoneyBundle\Tests\Twig\Extension;
+namespace Coverd\MoneyBundle\Tests\Twig\Extension;
 
 use Money\Currency;
-use Tbbc\MoneyBundle\Formatter\MoneyFormatter;
-use Tbbc\MoneyBundle\Twig\Extension\CurrencyExtension;
+use Coverd\MoneyBundle\Formatter\MoneyFormatter;
+use Coverd\MoneyBundle\Twig\Extension\CurrencyExtension;
 use Twig\Loader\ArrayLoader;
 use PHPUnit\Framework\TestCase;
 use Twig\Environment;
@@ -24,7 +24,7 @@ class CurrencyExtensionTest extends TestCase
      */
     protected $variables;
 
-    public function setUp()
+    public function setUp(): void
     {
         \Locale::setDefault("fr_FR");
         $this->extension = new CurrencyExtension(new MoneyFormatter(2));
@@ -53,6 +53,6 @@ class CurrencyExtensionTest extends TestCase
         $twig = new Environment($loader, array('debug' => true, 'cache' => false));
         $twig->addExtension($this->extension);
 
-        return $twig->loadTemplate('index');
+        return $twig->load('index');
     }
 }
