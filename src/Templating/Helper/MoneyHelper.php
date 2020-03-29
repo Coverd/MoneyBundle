@@ -5,21 +5,13 @@ declare(strict_types=1);
 namespace Coverd\MoneyBundle\Templating\Helper;
 
 use Coverd\MoneyBundle\Formatter\MoneyFormatter;
+use Money\Currency;
 use Money\Money;
 
-/**
- * Class MoneyHelper.
- */
 class MoneyHelper
 {
-    /**
-     * @var MoneyFormatter
-     */
-    protected $moneyFormatter;
+    private $moneyFormatter;
 
-    /**
-     * Constructor.
-     */
     public function __construct(MoneyFormatter $moneyFormatter)
     {
         $this->moneyFormatter = $moneyFormatter;
@@ -28,13 +20,8 @@ class MoneyHelper
     /**
      * Formats the given Money object
      * INCLUDING the currency symbol.
-     *
-     * @param string $decPoint
-     * @param string $thousandsSep
-     *
-     * @return string
      */
-    public function format(Money $money, $decPoint = ',', $thousandsSep = ' ')
+    public function format(Money $money, string $decPoint = ',', string $thousandsSep = ' '): string
     {
         return $this->moneyFormatter->formatMoney($money, $decPoint, $thousandsSep);
     }
@@ -42,36 +29,25 @@ class MoneyHelper
     /**
      * Formats the amount part of the given Money object
      * WITHOUT INCLUDING the currency symbol.
-     *
-     * @param string $decPoint
-     * @param string $thousandsSep
-     *
-     * @return string
      */
-    public function formatAmount(Money $money, $decPoint = ',', $thousandsSep = ' ')
+    public function formatAmount(Money $money, string $decPoint = ',', string $thousandsSep = ' '): string
     {
         return $this->moneyFormatter->formatAmount($money, $decPoint, $thousandsSep);
     }
 
     /**
      * Returns the amount for the given Money object as simple float.
-     *
-     * @return float
      */
-    public function asFloat(Money $money)
+    public function asFloat(Money $money): float
     {
         return $this->moneyFormatter->asFloat($money);
     }
 
     /**
-     * Formats only the currency part of the given Money object.
-     *
-     * @param Money $money
-     *
-     * @return string
+     * Returns the symbol corresponding to the given currency.
      */
-    public function formatCurrency($money)
+    public function symbol(Currency $currency): string
     {
-        return $this->moneyFormatter->formatCurrency($money);
+        return $this->moneyFormatter->formatCurrencyAsSymbol($currency);
     }
 }

@@ -8,9 +8,7 @@
         <parameter key="coverd_money.money_manager.class">Coverd\MoneyBundle\Money\MoneyManager</parameter>
         <parameter key="coverd_money.formatter.money_formatter.class">Coverd\MoneyBundle\Formatter\MoneyFormatter</parameter>
         <parameter key="coverd_money.templating.helper.money.class">Coverd\MoneyBundle\Templating\Helper\MoneyHelper</parameter>
-        <parameter key="coverd_money.templating.helper.currency.class">Coverd\MoneyBundle\Templating\Helper\CurrencyHelper</parameter>
         <parameter key="coverd_money.twig.money.class">Coverd\MoneyBundle\Twig\Extension\MoneyExtension</parameter>
-        <parameter key="coverd_money.twig.currency.class">Coverd\MoneyBundle\Twig\Extension\CurrencyExtension</parameter>
     </parameters>
 
     <services>
@@ -28,15 +26,8 @@
         <service id="coverd_money.templating.helper.money" class="%coverd_money.templating.helper.money.class%">
             <argument type="service" id="coverd_money.formatter.money_formatter"/>
         </service>
-        <service id="coverd_money.templating.helper.currency" class="%coverd_money.templating.helper.currency.class%">
-            <argument type="service" id="coverd_money.formatter.money_formatter"/>
-        </service>
 
         <service id="coverd_money.twig.money" class="%coverd_money.twig.money.class%" public="true">
-            <argument type="service" id="coverd_money.formatter.money_formatter"/>
-            <tag name="twig.extension" />
-        </service>
-        <service id="coverd_money.twig.currency" class="%coverd_money.twig.currency.class%" public="true">
             <argument type="service" id="coverd_money.formatter.money_formatter"/>
             <tag name="twig.extension" />
         </service>

@@ -96,21 +96,9 @@ class MoneyFormatterTest extends TestCase
         $this->assertTrue(\is_float($value));
     }
 
-    public function testFormatCurrency()
-    {
-        $value = $this->formatter->formatCurrency($this->inputMoney);
-        $this->assertEquals('€', $value);
-    }
-
     public function testFormatCurrencyAsSymbol()
     {
         $value = $this->formatter->formatCurrencyAsSymbol($this->inputMoney->getCurrency());
         $this->assertEquals('€', $value);
-    }
-
-    public function testFormatCurrencyAsName()
-    {
-        $value = $this->formatter->formatCurrencyAsName($this->inputMoney->getCurrency());
-        $this->assertEquals('EUR', $value);
     }
 }

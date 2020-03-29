@@ -253,7 +253,6 @@ class IndexController extends Controller
 {{ $amount | money_format }}
 {{ $amount | money_as_float }}
 {{ $amount.currency | currency_symbol }}
-{{ $amount.currency | currency_name }}
 {{ $amount | money_format_currency }}
 ```
 

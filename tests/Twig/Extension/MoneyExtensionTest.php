@@ -52,8 +52,8 @@ class MoneyExtensionTest extends TestCase
             ['{{ price|money_format(".", ",") }}', '1,234,567.89 €'],
             ['{{ price|money_format_amount }}', '1 234 567,89'],
             ['{{ price|money_format_amount(".", ",") }}', '1,234,567.89'],
-            ['{{ price|money_format_currency }}', '€'],
             ['{{ price|money_as_float }}', '1234567.89'],
+            ['{{ price.currency|currency_symbol(".", ",") }}', '€'],
         ];
     }
 
