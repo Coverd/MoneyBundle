@@ -19,10 +19,3 @@ doctrine:
                 driver:   "pdo_sqlite"
                 memory:   true
                 path:     ":memory:"
-
-    orm:
-        entity_managers:
-            default:
-                auto_mapping: true
-            other:
-                connection: other
