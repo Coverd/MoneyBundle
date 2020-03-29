@@ -15,18 +15,16 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 /**
  * @group functionnal
  */
-class ConfigTest
-    extends WebTestCase
+class ConfigTest extends WebTestCase
 {
     /** @var  \Symfony\Bundle\FrameworkBundle\Client */
     private $client;
+
     public function setUp(): void
     {
         parent::setUp();
         /** @var \Symfony\Bundle\FrameworkBundle\Client client */
         $this->client = static::createClient();
-        $this->runCommand('doctrine:database:create');
-        $this->runCommand('doctrine:schema:update --force');
     }
 
     protected function runCommand($command)
