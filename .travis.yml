@@ -14,13 +14,11 @@ jobs:
   include:
     # Minimum supported dependencies with the latest and oldest PHP version
     - php: 7.3
-      env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="max[self]=0"
+      env: COMPOSER_FLAGS="--prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="max[self]=0"
 
     # Test supported LTS versions
     - php: 7.3
-      env: DEPENDENCIES="symfony/lts:^4"
     - php: 7.4
-      env: DEPENDENCIES="symfony/lts:^5"
 
     # Beta dependencies
     - php: 7.4
@@ -33,11 +31,9 @@ jobs:
 before_install:
   - phpenv config-rm xdebug.ini || true
   - if ! [ -z "$STABILITY" ]; then composer config minimum-stability ${STABILITY}; fi;
-  - if ! [ -v "$DEPENDENCIES" ]; then composer require --no-update ${DEPENDENCIES}; fi;
-  - composer self-update
 
 install:
-  - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
+  - composer update ${COMPOSER_FLAGS} --prefer-dist --prefer-stable --no-interaction
 
 script:
   - composer validate --strict --no-check-lock
