@@ -74,14 +74,4 @@ class MoneyHelper
     {
         return $this->moneyFormatter->formatCurrency($money);
     }
-
-    /**
-     * Returns the Currency object.
-     *
-     * @return \Money\Currency
-     */
-    public function getCurrency(Money $money)
-    {
-        return $this->moneyFormatter->getCurrency($money);
-    }
 }
