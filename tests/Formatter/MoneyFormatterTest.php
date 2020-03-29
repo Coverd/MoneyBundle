@@ -35,26 +35,26 @@ class MoneyFormatterTest extends TestCase
     {
         // check locale
         \Locale::setDefault('fr_FR');
-        $this->assertEquals('1 234 567,89 €', $this->formatter->localizedFormatMoney($this->inputMoney));
+        $this->assertEquals('1 234 567,89 €', $this->formatter->localizedFormatMoney($this->inputMoney));
         \Locale::setDefault('en_US');
         $this->assertEquals('€1,234,567.89', $this->formatter->localizedFormatMoney($this->inputMoney));
-        $this->assertEquals('1 234 567,89 €', $this->formatter->localizedFormatMoney($this->inputMoney, 'fr'));
+        $this->assertEquals('1 234 567,89 €', $this->formatter->localizedFormatMoney($this->inputMoney, 'fr'));
 
         // check new currency
         $money = new Money(123456789, new Currency('USD'));
-        $this->assertEquals('1 234 567,89 $US', $this->formatter->localizedFormatMoney($money, 'fr'));
+        $this->assertEquals('1 234 567,89 $US', $this->formatter->localizedFormatMoney($money, 'fr'));
         $this->assertEquals('$1,234,567.89', $this->formatter->localizedFormatMoney($money, 'en'));
 
         // ckeck decimals
         $formatter = new MoneyFormatter(4);
         \Locale::setDefault('fr_FR');
-        $this->assertEquals('12 345,6789 €', $formatter->localizedFormatMoney($this->inputMoney));
+        $this->assertEquals('12 345,6789 €', $formatter->localizedFormatMoney($this->inputMoney));
 
         // check with custom formatter
         $numberFormatter = new \NumberFormatter('fr', \NumberFormatter::CURRENCY);
         $numberFormatter->setTextAttribute(\NumberFormatter::CURRENCY_CODE, 'EUR');
         $numberFormatter->setAttribute(\NumberFormatter::FRACTION_DIGITS, 3);
-        $this->assertEquals('12 345,679 €', $formatter->localizedFormatMoney($this->inputMoney, null, $numberFormatter));
+        $this->assertEquals('12 345,679 €', $formatter->localizedFormatMoney($this->inputMoney, null, $numberFormatter));
 
     }
 
@@ -110,12 +110,5 @@ class MoneyFormatterTest extends TestCase
     {
         $value = $this->formatter->formatCurrencyAsName($this->inputMoney->getCurrency());
         $this->assertEquals('EUR', $value);
-    }
-
-    public function testGetCurrency()
-    {
-        $value = $this->formatter->getCurrency($this->inputMoney);
-        $this->assertInstanceOf('Money\Currency', $value);
-        $this->assertEquals(new Currency('EUR'), $value);
     }
 }
