@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./Tests/bootstrap.php" colors="true">
+<phpunit bootstrap="./tests/bootstrap.php" colors="true">
     <!-- Les fichiers de tests à lancer -->
     <testsuites>
         <testsuite name="CoverdMoneyBundle test suite">
-            <directory suffix="Test.php">./Tests</directory>
+            <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
 
     <php>
-        <server name="KERNEL_DIR" value="./Tests/app/" />
+        <server name="KERNEL_DIR" value="./tests/app/" />
         <env name="KERNEL_CLASS" value="AppKernel" />
     </php>
-    <!-- Quels fichiers sont concernés par l'évaluation du code coverage -->
+
     <filter>
         <whitelist>
-            <directory>./</directory>
-            <exclude>
-                <directory>./Resources</directory>
-                <directory>./Tests</directory>
-                <directory>./vendor</directory>
-                <directory>./var</directory>
-            </exclude>
+            <directory>./src</directory>
         </whitelist>
     </filter>
 </phpunit>
