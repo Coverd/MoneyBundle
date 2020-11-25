@@ -26,11 +26,6 @@
         <service id="coverd_money.templating.helper.money" class="%coverd_money.templating.helper.money.class%">
             <argument type="service" id="coverd_money.formatter.money_formatter"/>
         </service>
-
-        <service id="coverd_money.twig.money" class="%coverd_money.twig.money.class%" public="true">
-            <argument type="service" id="coverd_money.formatter.money_formatter"/>
-            <tag name="twig.extension" />
-        </service>
     </services>
 
 </container>

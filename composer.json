@@ -19,7 +19,6 @@
         "symfony/framework-bundle": "^4.3|^5.0",
         "moneyphp/money": "^3.0",
         "symfony/form": "^4.3|^5.0",
-        "symfony/twig-bundle": "^4.3|^5.0",
         "symfony/console": "^4.3|^5.0"
     },
     "require-dev": {
@@ -28,7 +27,8 @@
         "beberlei/doctrineextensions": "^1.2",
         "doctrine/doctrine-bundle": "^1.12|^2.0",
         "phpunit/phpunit": "^9.0",
-        "symfony/phpunit-bridge": "^4.3|^5.0"
+        "symfony/phpunit-bridge": "^4.3|^5.0",
+        "symfony/twig-bundle": "^4.3|^5.0"
     },
     "autoload": {
         "psr-4": {
