@@ -26,7 +26,7 @@ class MoneyFormatterTest extends TestCase
      */
     protected $inputMoney;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         \Locale::setDefault('fr_FR');
         $this->formatter = new MoneyFormatter(2);

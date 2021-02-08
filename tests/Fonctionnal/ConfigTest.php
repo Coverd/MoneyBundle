@@ -18,7 +18,7 @@ class ConfigTest extends WebTestCase
     /** @var \Symfony\Bundle\FrameworkBundle\Client */
     private $client;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         /* @var \Symfony\Bundle\FrameworkBundle\Client client */
