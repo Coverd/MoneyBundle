@@ -5,23 +5,23 @@ cache:
     - $HOME/.composer/cache/files
 
 php:
-  - '7.3'
-  - '7.4'
+  - 7.4
+  - 8.0
 
 jobs:
   fast_finish: true
 
   include:
     # Minimum supported dependencies with the latest and oldest PHP version
-    - php: 7.3
+    - php: 7.4
       env: COMPOSER_FLAGS="--prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="max[self]=0"
 
     # Test supported LTS versions
-    - php: 7.3
     - php: 7.4
+    - php: 8.0
 
     # Beta dependencies
-    - php: 7.4
+    - php: latest
       env: STABILITY="dev"
 
   allow_failures:
