@@ -71,7 +71,7 @@ class MoneyFormatter
     {
         $amount = $money->getAmount();
         $amount = (float) $amount;
-        $amount = $amount / pow(10, $this->decimals);
+        $amount = $amount / 10 ** $this->decimals;
 
         return $amount;
     }

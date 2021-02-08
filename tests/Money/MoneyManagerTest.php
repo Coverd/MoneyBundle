@@ -15,12 +15,12 @@ class MoneyManagerTest extends TestCase
     /** @var MoneyManager */
     protected $manager;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->manager = new MoneyManager('EUR', 2);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

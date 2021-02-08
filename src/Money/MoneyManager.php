@@ -41,7 +41,7 @@ class MoneyManager implements MoneyManagerInterface
             $currencyCode = $this->referenceCurrencyCode;
         }
         $currency = new Currency($currencyCode);
-        $amountAsInt = $floatAmount * pow(10, $this->decimals);
+        $amountAsInt = $floatAmount * 10 ** $this->decimals;
         $amountAsInt = round($amountAsInt);
         $amountAsInt = (int) $amountAsInt;
         $money = new Money($amountAsInt, $currency);

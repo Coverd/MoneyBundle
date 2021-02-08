@@ -27,7 +27,7 @@ class MoneyExtensionTest extends TestCase
      */
     protected $variables;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         \Locale::setDefault('fr_FR');
 
