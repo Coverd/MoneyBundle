@@ -5,7 +5,7 @@
 
 ## Disclaimer
 
-The original bundle is [CoverdMoneyBundle](https://github.com/TheBigBrainsCompany/CoverdMoneyBundle).
+The original bundle is [TbbcMoneyBundle](https://github.com/TheBigBrainsCompany/TbbcMoneyBundle).
 As this repository is not heavily maintained, we forked it & simplified it a lot by removing all features we don't need (basically, everything related to pair / ratio.
 
 ## Description
@@ -32,7 +32,7 @@ Configure the bundle (configuration file should live in config/packages/coverd_m
 coverd_money:
     currencies: ["USD", "EUR"] # Choose all availables currencies
     reference_currency: "EUR" # Choose the default currency
-    decimals: 2 # Choose the nuber of decimals (default: 2)
+    decimals: 2 # Choose the number of decimals (default: 2)
 ```
 
 To use twig form theme:
